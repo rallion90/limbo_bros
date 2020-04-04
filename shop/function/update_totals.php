@@ -59,7 +59,7 @@
 					$product_quantity = $values['product_quantity'];
 					$product_price = $values['product_price'];
 
-					$place_order = mysqli_query($connect, "INSERT INTO orders (order_numbers, user_id, products, quantity, price, province, municipality, barangay, street, status) VALUES ('$order_numbers', '$user_id', '$product_name', '$product_quantity', '$product_price', '$province', '$municipality', '$barangay', '$street', '0')");
+					$place_order = mysqli_query($connect, "INSERT INTO orders (order_numbers, user_id, contact_number, products, quantity, price, province, municipality, barangay, street, status) VALUES ('$order_numbers', '$user_id', '$contact_number', '$product_name', '$product_quantity', '$product_price', '$province', '$municipality', '$barangay', '$street', '0')");
 
 					if($place_order){
 						unset($_SESSION['shopping_cart']);

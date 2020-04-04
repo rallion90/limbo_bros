@@ -61,6 +61,7 @@
 								<th width="10%">Product Quantity</th>
 								<th width="10%">Order Number</th>
 								<th width="10%">User Id</th>
+								
 								<th width="10%">Province</th>
 								<th width="10%">Municipality</th>
 								<th width="10%">Barangay</th>
@@ -79,6 +80,7 @@
 							$get_municipality = $row['municipality'];
 							$get_barangay = $row['barangay'];
 							$get_street = $row['street'];
+							//$get_number
 
 							$get_province1 = mysqli_query($connect, "SELECT * FROM refprovince WHERE provCode='$get_province'");
 							$get_municipality1 = mysqli_query($connect, "SELECT * FROM refcitymun WHERE citymunCode='$get_municipality'");
@@ -100,6 +102,7 @@
 								<td style="vertical-align: middle;"><?php echo $get_product_quantity;?></td>
 								<td style="vertical-align: middle;"><?php echo $get_order_number;?></td>
 								<td style="vertical-align: middle;"><?php echo $get_user_id;?></td>
+								
 								<td style="vertical-align: middle;"><?php echo $get_province_name;?></td>
 								<td style="vertical-align: middle;"><?php echo $get_municipality_name;?></td>
 								<td style="vertical-align: middle;"><?php echo $get_barangay_name;?></td>

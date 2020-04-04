@@ -6,8 +6,11 @@ session_start();
 
         $get_category = mysqli_query($connect, "SELECT * FROM categories");
         $get_product = mysqli_query($connect, "SELECT * FROM product");
-        $get_pending_order = mysqli_query($connect, "SELECT * FROM orders WHERE status = '0'");
-        $get_onship_order = mysqli_query($connect, "SELECT * FROM orders WHERE status = '1'");
+        $get_pending_order = mysqli_query($connect, "SELECT * FROM orders WHERE tag_deleted = '0'");
+        //$get_onship_order = mysqli_query($connect, "SELECT * FROM orders WHERE tag_deleted = '1'");
+
+        $get_ship = mysqli_query($connect, "SELECT * FROM orders WHERE tag_deleted='1'");
+
         $get_comment = mysqli_query($connect, "SELECT * FROM comment");
     }
     else{
@@ -171,7 +174,7 @@ session_start();
                                         <a href="onship.php"><i class="fa fa-circle-o"> On Ship</i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-circle-o"> Delivered</i></a>
+                                        <a href="deliver.php"><i class="fa fa-circle-o"> Delivered</i></a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

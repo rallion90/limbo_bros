@@ -274,6 +274,8 @@
 
 						<?php
 										$total = $total + ($values['product_quantity'] * $values['product_price']);	
+
+
 									}
 								}	
 							}else{	
@@ -386,6 +388,8 @@
 								<span class="mtext-101 cl2" id="total">
 									<span class="error"></span>
 									Total: <br>₱ <?php echo number_format($total);?>.00
+
+									<input type="hidden" name="total" value="<?php echo $total;?>">
 									
 								</span>
 							</div>
@@ -393,10 +397,7 @@
 						
 						<div class="container">
 							<div class="col-md-6">
-								<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" name="checkout">
-									Pay With Paypal
-								</button>
-								<br>	
+									
 								<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" name="checkout">
 									Proceed to Checkout
 								</button>

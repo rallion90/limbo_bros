@@ -103,7 +103,8 @@
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <canvas id="yearly" width="400" height="200"></canvas>
+                                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                    <button class="btn invisible" id="backButton">&lt; Back</button>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>

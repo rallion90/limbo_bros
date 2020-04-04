@@ -21,6 +21,8 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
+        <script src="../template/admin_template/js/canvasjs.min.js"></script>
+
         <script>
             CKEDITOR.replace('editor');
         </script>
@@ -46,84 +48,45 @@
           });
         </script>
 
-        <script>
-          var ctx = document.getElementById('yearly').getContext('2d');
-          var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                  datasets: [{
-                      label: '# of Votes',
-                      data: [12, 19, 3, 5, 2, 3],
-                      backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)'
-                      ],
-                      borderWidth: 1
-                  }]
-              },
-              options: {
-                  scales: {
-                      yAxes: [{
-                          ticks: {
-                              beginAtZero: true
-                          }
-                      }]
-                  }
-              }
-          });
-        </script>
+        
 
         <script>
-          var ctx = document.getElementById('monthly').getContext('2d');
-          var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                  datasets: [{
-                      label: '# of Votes',
-                      data: [12, 19, 3, 5, 2, 3],
-                      backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)'
-                      ],
-                      borderWidth: 1
-                  }]
-              },
-              options: {
-                  scales: {
-                      yAxes: [{
-                          ticks: {
-                              beginAtZero: true
-                          }
-                      }]
-                  }
-              }
+          window.onload = function() {
+ 
+          var dataPoints = [];
+           
+          var chart = new CanvasJS.Chart("chartContainer", {
+            click: visitorsChartDrilldownHandler,
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+              text: "Daily Sales Data"
+            },
+            axisY: {
+              title: "Units",
+              titleFontSize: 24
+            },
+            data: [{
+              type: "column",
+              yValueFormatString: "#,### Units",
+              dataPoints: dataPoints
+            }]
           });
+           
+          function addData(data) {
+            for (var i = 0; i < data.length; i++) {
+              dataPoints.push({
+                x: new Date(data[i].date),
+                y: data[i].units
+              });
+            }
+            chart.render();
+           
+          }
+           
+          $.getJSON("https://canvasjs.com/data/gallery/javascript/daily-sales-data.json", addData);
+           
+          }
         </script>
 
     </body>

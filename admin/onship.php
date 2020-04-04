@@ -1,8 +1,6 @@
 <?php include("header.php");?>
 <?php
 	$get_ship = mysqli_query($connect, "SELECT * FROM orders WHERE tag_deleted='1'");
-
-	//$fetch_ship = mysqli_fetch_assoc($get_ship);
 ?>
 
 
@@ -36,22 +34,27 @@
 								<th width="10%">Municipality</th>
 								<th width="10%">Barangay</th>
 								<th width="10%">Total</th>
+								<th width="10%"></th>
 							</tr>
 						</thead>
 						<tbody>
-					
-							<tr>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								<td style="vertical-align: middle;"></td>
-								
-								
-							</tr>
+						<?php
+							while($row1 = mysqli_fetch_assoc($get_ship)){
+						?>
+								<tr>
+									<td style="vertical-align: middle;"><?php echo $row1['user_id']; ?></td>
+									<td style="vertical-align: middle;"><?php echo $row1['products']; ?></td>
+									<td style="vertical-align: middle;"><?php echo $row1['quantity']; ?></td>
+									<td style="vertical-align: middle;"><?php echo $row1['price']; ?></td>
+									<td style="vertical-align: middle;"></td>
+									<td style="vertical-align: middle;"></td>
+									<td style="vertical-align: middle;"></td>
+									<td style="vertical-align: middle;"></td>
+									<td style="vertical-align: middle;"><a href="function/delivered.php?id=<?php echo $row1['order_id'];?>" class="btn btn-default">Delivered</a></td>
+								</tr>
+						<?php
+							}
+						?>	
 														
 						</tbody>
 					</table>
